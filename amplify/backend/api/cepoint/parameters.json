@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "cepoint",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}
