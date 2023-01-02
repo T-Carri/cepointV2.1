@@ -4,12 +4,30 @@ import {Amplify, API, graphqlOperation} from 'aws-amplify'
 //import { createTodo } from '../graphql/mutations';
 //import { listTodos } from '../graphql/queries';
 
-const initialState = { name: '', description: '' }
-export const WhiteBoard = ({props}) => {
+//import { createasistencia } from './graphql/mutations';
+//const initialState = { name: '', description: '' }
+
+ export const WhiteBoard = ({props}) => {
     const { tokens } = useTheme();
     const [formState, setFormState] = useState(initialState)
     const [todos, setTodos] = useState([])
   
+
+  /*  const newasistencia = await API.graphql({
+      query: createasistencia,
+      variables: {
+          input: {
+      "idAsistencia": "a3f4095e-39de-43d2-baf4-f8c16f0f6f4d",
+      "fecha": "1970-01-01T12:30:23.999Z",
+      "ubicacion": "Lorem ipsum dolor sit amet",
+      "nombre": "Lorem ipsum dolor sit amet",
+      "usuarioChecador": "Lorem ipsum dolor sit amet",
+      "trabajadorVerificado": true
+    }
+      }
+  });
+ */
+
    /*  useEffect(() => {
       fetchTodos()
     }, [])
@@ -44,6 +62,7 @@ export const WhiteBoard = ({props}) => {
     backgroundColor={tokens.colors.background.secondary}
 
   > <h1>Hello {props.username}</h1>
+  {console.log(props)}
     {/*
  <div style={styles.container}>
       <h2>Amplify Todos</h2>

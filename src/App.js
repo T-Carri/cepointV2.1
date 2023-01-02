@@ -46,7 +46,10 @@ function App() {
    <Authenticator  /* formFields={formFields} components={components} */>
     {({ signOut, user }) => (
 
-<main>
+      
+
+
+  <main>
   
   
 
@@ -69,6 +72,8 @@ function App() {
 
 
 </main>
+
+
 
       
     )}
