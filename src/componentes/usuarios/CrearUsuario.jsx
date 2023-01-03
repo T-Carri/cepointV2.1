@@ -1,9 +1,69 @@
-import React from 'react'
-import {   TextField, ThemeProvider, useTheme, Heading, SelectField } from '@aws-amplify/ui-react';
+import React, {useState} from 'react'
+import {Amplify, API, graphqlOperation} from 'aws-amplify'
+import {  Autocomplete, TextField, ThemeProvider, useTheme, Heading, SelectField, Icon} from '@aws-amplify/ui-react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import './CrearUsuario.css'
+import { options } from './options';
+const SaveIcon = () => (
+  <Icon
+    ariaLabel=""
+    pathData="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"
+  />
+);
+
+const initialState = {   
+  nombre: '', 
+  area:'',  
+  UID:'',
+  email:'',  
+  empresa:'', 
+  trabajadorVerificado: true,
+  equipoPrestado: [],
+  ocupado: false,   
+  perfil:'',  
+  direccion:'',
+  nss:'',
+  alergias: [],
+  tipoSangre:'',
+  padeceEnfermedad: [],
+  observaciones: [] }
 export const CrearUsuario = () => {
+
   const [value, setValue] = React.useState('');
+const [formState, setFormState] = useState()
+const [Usuario, setUsuario]=useState([])
+ //DATA TOPIC
+ function createUsuario(key, value) {
+  setFormState({ ...formState, [key]: value })
+}
+
+
+async function addUser() {
+  try {
+    if (!formState.nombre || !formState.perfil) return
+    const user = { ...formState }
+    setUsuario([...Usuario, user])
+    setFormState(initialState)
+    await API.graphql(graphqlOperation({/*Aqui va la funcion de mutacion en el archivo graphql*/}, {input: user}))
+  } catch (err) {
+    console.log('error creating todo:', err)
+  }
+}
+
+  // It is your responsibility to set up onSelect
+  const onSelect = (option) => {
+    const { label } = option;
+    setValue(label);
+    console.log(value)
+  };
+
+  // It is your responsibility to set up onClear
+  const onClear = () => {
+    setValue('');
+  };
+
+
+  //UI TOPIC
   const { tokens } = useTheme();
   const theme = {
     name: 'custom-theme',
@@ -22,9 +82,14 @@ export const CrearUsuario = () => {
   return (
 <ThemeProvider theme={theme}>
     <Card id="CU" variation="outlined">
-     <Heading level={5}>
+      <Row>
+        <Col>   <Heading level={5}>
               Crea un usuario 
-            </Heading>
+            </Heading> </Col>
+        <Col><Button variant='dark'>Subir foto {' '}<SaveIcon/></Button></Col>
+
+      </Row>
+  
       
 <br/>
 
@@ -33,6 +98,7 @@ export const CrearUsuario = () => {
       placeholder="Nombre"
       label="Nombre del trabajador"
       errorMessage="There is an error"
+      onChange={event=> createUsuario('nombre', event.target.value)}
     />
 
 <br />
@@ -48,18 +114,16 @@ export const CrearUsuario = () => {
     /></Col>
    
       <Col> 
-      <label>Empresa</label>
-      <SelectField
+      
+      <Autocomplete
       label="Empresa"
-      labelHidden
-      placeholder="Selecciona la empresa del trabajador"
+      options={options}
       value={value}
-      onChange={(e) => setValue(e.target.value)}
-    >
-      <option value="x">X</option>
-      <option value="y">Y</option>
-      <option value="z">Z</option>
-    </SelectField></Col>
+      onChange={event=> createUsuario('empresa', event.target.value)}
+      onClear={onClear}
+      onSelect={onSelect}
+    />
+     </Col>
 
     </Row>
     <br />

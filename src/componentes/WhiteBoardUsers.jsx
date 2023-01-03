@@ -32,7 +32,7 @@ const initialState = { name: '', description: '' }
             Controles para gestionar usuarios
             </Text>
       <br/>
-      <br/>
+      
     
      <Button variant='dark' onClick={()=>{
       navigate("allUsers")
