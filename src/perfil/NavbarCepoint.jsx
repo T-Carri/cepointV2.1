@@ -1,9 +1,14 @@
 import React from 'react'
-import { Card, Button} from '@aws-amplify/ui-react';
+import {  Card, TextField, ThemeProvider, useTheme,Button,  Heading } from '@aws-amplify/ui-react';
+
 import {  NavbarBrand, Navbar, Nav, NavDropdown, Row, Col} from 'react-bootstrap'
 
 export const NavbarCepoint = ({props}) => {
+
+
+
   return (
+    
     <Card
     columnStart="1"
     columnEnd="-1"
@@ -47,5 +52,6 @@ export const NavbarCepoint = ({props}) => {
     
    
   </Card>
+ 
   )
 }

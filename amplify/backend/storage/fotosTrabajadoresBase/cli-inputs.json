@@ -1,0 +1,13 @@
+{
+  "resourceName": "fotosTrabajadoresBase",
+  "policyUUID": "6183d28d",
+  "bucketName": "cepointe2bfeab3bf184f288be7a91807f520f7",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

@@ -3,17 +3,17 @@ import { Card, Button,  useTheme} from '@aws-amplify/ui-react';
 import {Amplify, API, graphqlOperation} from 'aws-amplify'
 //import { createTodo } from '../graphql/mutations';
 //import { listTodos } from '../graphql/queries';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+//import { createasistencia, createTrabajador } from '../graphql/mutations';
+const initialState = { name: '', description: '' }
 
-//import { createasistencia } from './graphql/mutations';
-//const initialState = { name: '', description: '' }
-
- export const WhiteBoard = ({props}) => {
+ export const WhiteBoard =  ({props}) => {
     const { tokens } = useTheme();
     const [formState, setFormState] = useState(initialState)
     const [todos, setTodos] = useState([])
   
 
-  /*  const newasistencia = await API.graphql({
+/*   const newasistencia = await API.graphql({
       query: createasistencia,
       variables: {
           input: {
@@ -26,7 +26,15 @@ import {Amplify, API, graphqlOperation} from 'aws-amplify'
     }
       }
   });
- */
+ 
+  const newUsuario = await API.graphql({
+    query: createTrabajador,
+    variables: {
+        input: {
+    
+  }
+    }
+}); */
 
    /*  useEffect(() => {
       fetchTodos()
@@ -59,37 +67,15 @@ import {Amplify, API, graphqlOperation} from 'aws-amplify'
   <Card
     columnStart="2"
     columnEnd="-1"
-    backgroundColor={tokens.colors.background.secondary}
+    backgroundColor={tokens.colors.background.secondary}> 
+  <h1>Hello {props.username}</h1>
+  <h5>Bienvenida</h5>
+     </Card>  
 
-  > <h1>Hello {props.username}</h1>
-  {console.log(props)}
-    {/*
- <div style={styles.container}>
-      <h2>Amplify Todos</h2>
-      <input
-        onChange={event => setInput('name', event.target.value)}
-        style={styles.input}
-        value={formState.name}
-        placeholder="Name"
-      />
-      <input
-        onChange={event => setInput('description', event.target.value)}
-        style={styles.input}
-        value={formState.description}
-        placeholder="Description"
-      />
-      <button style={styles.button} onClick={addTodo}>Create Todo</button>
-      {
-        todos.map((todo, index) => (
-          <div key={todo.id ? todo.id : index} style={styles.todo}>
-            <p style={styles.todoName}>{todo.name}</p>
-            <p style={styles.todoDescription}>{todo.description}</p>
-          </div>
-        ))
-      }
-    </div>
-    */}
-  </Card> 
+  
+
+
+ 
   )
 }
 const styles = {
@@ -100,3 +86,7 @@ const styles = {
   todoDescription: { marginBottom: 0 },
   button: { backgroundColor: 'black', color: 'white', outline: 'none', fontSize: 18, padding: '12px 0px' }
 }
+
+
+
+
