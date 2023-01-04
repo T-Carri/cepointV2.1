@@ -62,6 +62,8 @@ export const createTrabajador = /* GraphQL */ `
   ) {
     createTrabajador(input: $input, condition: $condition) {
       nombre
+      fechaNac
+      edad
       area
       UID
       email
@@ -89,6 +91,8 @@ export const updateTrabajador = /* GraphQL */ `
   ) {
     updateTrabajador(input: $input, condition: $condition) {
       nombre
+      fechaNac
+      edad
       area
       UID
       email
@@ -116,6 +120,8 @@ export const deleteTrabajador = /* GraphQL */ `
   ) {
     deleteTrabajador(input: $input, condition: $condition) {
       nombre
+      fechaNac
+      edad
       area
       UID
       email

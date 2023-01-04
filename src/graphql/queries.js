@@ -42,6 +42,8 @@ export const getTrabajador = /* GraphQL */ `
   query GetTrabajador($id: ID!) {
     getTrabajador(id: $id) {
       nombre
+      fechaNac
+      edad
       area
       UID
       email
@@ -71,6 +73,8 @@ export const listTrabajadors = /* GraphQL */ `
     listTrabajadors(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         nombre
+        fechaNac
+        edad
         area
         UID
         email

@@ -20,7 +20,7 @@ export const GreyBar = () => {
     columnStart="1"
     columnEnd="2"
      backgroundColor={tokens.colors.background.quaternary} >
-    <Button variation='warning' onClick={()=>{
+    <Button variant='success' onClick={()=>{
       navigate("users")
     }}>Usuarios</Button>
  <br/>
@@ -29,9 +29,14 @@ export const GreyBar = () => {
  <Button variation='primary'  onClick={()=>{
       navigate("asistencias")
     }}>Asistencias</Button>
+<br />
+<br />
 
+<Button>SHE</Button>
+<br />
+<br />
 
-
+<Button>ALMACEN</Button>
   </Card>
   )
 }

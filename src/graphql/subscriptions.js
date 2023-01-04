@@ -58,6 +58,8 @@ export const onCreateTrabajador = /* GraphQL */ `
   ) {
     onCreateTrabajador(filter: $filter) {
       nombre
+      fechaNac
+      edad
       area
       UID
       email
@@ -84,6 +86,8 @@ export const onUpdateTrabajador = /* GraphQL */ `
   ) {
     onUpdateTrabajador(filter: $filter) {
       nombre
+      fechaNac
+      edad
       area
       UID
       email
@@ -110,6 +114,8 @@ export const onDeleteTrabajador = /* GraphQL */ `
   ) {
     onDeleteTrabajador(filter: $filter) {
       nombre
+      fechaNac
+      edad
       area
       UID
       email

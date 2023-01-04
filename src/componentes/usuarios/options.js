@@ -31,5 +31,17 @@ export const options = [
     { id: "Tecnico CCTV", label: "Tecnico CCTV" },
     { id: "Asistente Direccion", label: "Asistente Direccion" },
     { id: "Portero", label: "Portero" },
-    { id: "Chofer", label: "Chofer" }
+    { id: "Chofer", label: "Chofer" },
+    {id:"Auxiliar TI", label: "Auxiliar TI"}
 ]
+
+
+
+export  const optionsEmpresas=[
+    {id: 'CE2000', label: 'CE2000'},
+    {id: 'SECMA', label: 'SECMA'},
+    {id: 'SIARSA', label: 'SIARSA'},
+    {id: 'MCBRICK', label: 'MCBRICK'},
+    {id: 'SOLCOM', label: 'SOLCOM'},
+    {id: 'INMOBILIARIA', label: 'INMOBILIARIA'}
+  ]

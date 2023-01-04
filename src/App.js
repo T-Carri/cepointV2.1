@@ -16,7 +16,7 @@ import { Button } from 'react-bootstrap';
 import {BrowserRouter as Router, Route, Routes, Outlet} from 'react-router-dom'
 import { WhiteBoardUsers } from './componentes/WhiteBoardUsers';
 import { WhiteBoardAsistencias } from './componentes/WhiteBoardAsistencias';
-import { AllUsers } from './componentes/usuarios/AllUsers';
+import  AllUsers  from './componentes/usuarios/AllUsers';
 import {Ocupados} from './componentes/usuarios/Ocupados';
 import {Desocupados} from  './componentes/usuarios/Desocupados';
 import {Inactivos} from  './componentes/usuarios/Inactivos';

@@ -9,14 +9,16 @@ type asistencia @model @auth(rules: [{allow: public}, {allow: groups, groups: ["
 
 type trabajador @model @auth(rules: [{allow: public}, {allow: groups, groups: ["RH"], operations: [read, create, update, delete]}]) {
   nombre: String!
-  area: String!
+  fechaNac:String,
+  edad:Int, 
+  area: String
   UID: String
   email: String
   empresa: String
   trabajadorVerificado: Boolean!
   equipoPrestado: [String]
   ocupado: Boolean
-  perfil: String
+  perfil: String!
   direccion: String
   nss: String
   alergias: [String]
