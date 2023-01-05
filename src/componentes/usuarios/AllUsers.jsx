@@ -3,7 +3,13 @@ import { listTrabajadors } from '../../graphql/queries'
 import {Amplify, API, graphqlOperation} from 'aws-amplify'
 import {Expander, ExpanderItem, Badge,Table, TableHead, TableRow, TableCell, TableBody,  Autocomplete, TextField, ThemeProvider, useTheme, Heading, SelectField, Icon} from '@aws-amplify/ui-react';
 import { Button, Card, Offcanvas } from 'react-bootstrap'
- const AllUsers = () => {
+const SaveIcon = () => (
+  <Icon
+    ariaLabel=""
+    pathData="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"
+  />
+); 
+const AllUsers = () => {
 
 /* Aqui vas a traer a todos 
 los usuarios.
@@ -22,6 +28,7 @@ clasificaciones
 */
 
 
+
 const initialState = {   
   nombre: '', 
   fechaNac:'',
@@ -32,7 +39,8 @@ const initialState = {
   empresa:'', 
   trabajadorVerificado: true,
   equipoPrestado: [],
-  ocupado: false,   
+  ocupado:false,
+  subcontrato:false,   
   perfil: '',  
   direccion:'',
   nss:'',
@@ -53,7 +61,8 @@ const initialState = {
     empresa:UserSelect?UserSelect.empresa:null, 
     trabajadorVerificado: UserSelect?UserSelect.trabajadorVerificado:null,
     equipoPrestado: UserSelect?UserSelect.equipoPrestado:null, 
-    ocupado: UserSelect?UserSelect.ocupado:null,   
+    ocupado: UserSelect?UserSelect.ocupado:null,
+    subcontrato: UserSelect?UserSelect.subcontrato:null,   
     perfil: UserSelect?UserSelect.perfil:null,  
     direccion:UserSelect?UserSelect.direccion:null,
     nss:UserSelect?UserSelect.nss:null,
@@ -169,6 +178,10 @@ async function fetchTodos() {
       //onChange={event=> createUsuario('direccion', event.target.value)}
       errorMessage="There is an error"
     />
+    <br />
+    <br />
+
+<Button variant='dark' >Subir foto {' '}<SaveIcon/></Button>
         </Offcanvas.Body>
       </Offcanvas>
       </TableRow>} value={e.nombre }>

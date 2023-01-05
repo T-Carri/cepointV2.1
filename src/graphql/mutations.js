@@ -71,6 +71,7 @@ export const createTrabajador = /* GraphQL */ `
       trabajadorVerificado
       equipoPrestado
       ocupado
+      subcontrato
       perfil
       direccion
       nss
@@ -100,6 +101,7 @@ export const updateTrabajador = /* GraphQL */ `
       trabajadorVerificado
       equipoPrestado
       ocupado
+      subcontrato
       perfil
       direccion
       nss
@@ -129,6 +131,7 @@ export const deleteTrabajador = /* GraphQL */ `
       trabajadorVerificado
       equipoPrestado
       ocupado
+      subcontrato
       perfil
       direccion
       nss

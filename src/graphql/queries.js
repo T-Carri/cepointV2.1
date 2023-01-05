@@ -51,6 +51,7 @@ export const getTrabajador = /* GraphQL */ `
       trabajadorVerificado
       equipoPrestado
       ocupado
+      subcontrato
       perfil
       direccion
       nss
@@ -82,6 +83,7 @@ export const listTrabajadors = /* GraphQL */ `
         trabajadorVerificado
         equipoPrestado
         ocupado
+        subcontrato
         perfil
         direccion
         nss

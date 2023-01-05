@@ -18,6 +18,7 @@ type trabajador @model @auth(rules: [{allow: public}, {allow: groups, groups: ["
   trabajadorVerificado: Boolean!
   equipoPrestado: [String]
   ocupado: Boolean
+  subcontrato:Boolean
   perfil: String!
   direccion: String
   nss: String
