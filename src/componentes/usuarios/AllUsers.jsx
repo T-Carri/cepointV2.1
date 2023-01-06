@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useMemo} from 'react'
 import { listTrabajadors } from '../../graphql/queries'
-import {Amplify, API, graphqlOperation} from 'aws-amplify'
+import {Amplify, API, graphqlOperation, Storage} from 'aws-amplify'
 import {Expander, ExpanderItem, Badge,Table, TableHead, TableRow, TableCell, TableBody,  Autocomplete, TextField, ThemeProvider, useTheme, Heading, SelectField, Icon} from '@aws-amplify/ui-react';
 import { Button, Card, Offcanvas } from 'react-bootstrap'
 const SaveIcon = () => (
@@ -70,6 +70,19 @@ const initialState = {
     tipoSangre:UserSelect?UserSelect.tipoSangre:null,
     padeceEnfermedad: UserSelect?UserSelect.padeceEnfermedad:null,
     observaciones: UserSelect?UserSelect.observaciones:null } 
+
+
+
+    async function onChange(e) {
+      const file = e.target.files[0];
+      try {
+        await Storage.put(file.name, file, {
+          contentType: "image/png", // contentType is optional
+        });
+      } catch (error) {
+        console.log("Error uploading file: ", error);
+      }
+    }
 
 
 const [show, setShow] = useState(false);
@@ -180,8 +193,8 @@ async function fetchTodos() {
     />
     <br />
     <br />
-
-<Button variant='dark' >Subir foto {' '}<SaveIcon/></Button>
+    <input type="file" onChange={onChange} />;
+<Button variant='dark'  >Subir foto {' '}<SaveIcon/></Button>
         </Offcanvas.Body>
       </Offcanvas>
       </TableRow>} value={e.nombre }>
