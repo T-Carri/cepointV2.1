@@ -16,11 +16,13 @@ import { Button } from 'react-bootstrap';
 import {BrowserRouter as Router, Route, Routes, Outlet} from 'react-router-dom'
 import { WhiteBoardUsers } from './componentes/WhiteBoardUsers';
 import { WhiteBoardAsistencias } from './componentes/WhiteBoardAsistencias';
+import { Checador } from './componentes/checador/Checador';
 import  AllUsers  from './componentes/usuarios/AllUsers';
 import {Ocupados} from './componentes/usuarios/Ocupados';
 import {Desocupados} from  './componentes/usuarios/Desocupados';
 import {Inactivos} from  './componentes/usuarios/Inactivos';
 import { CrearUsuario} from  './componentes/usuarios/CrearUsuario';
+
 Amplify.configure(awsExports);
 function App() {
   const { tokens } = useTheme();
@@ -79,6 +81,8 @@ function App() {
          <Route path="crearUsuario" element={<CrearUsuario/>} />
         </Route> 
       <Route path="asistencias" element={<WhiteBoardAsistencias/>}/> 
+      <Route path="checador" element={<Checador/>}/> 
+
       </Routes>
   
   </>

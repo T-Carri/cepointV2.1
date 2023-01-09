@@ -32,6 +32,12 @@ export const GreyBar = () => {
 <br />
 <br />
 
+<Button onClick={()=>{
+      navigate("checador")
+    }}>Checador</Button>
+<br />
+<br />
+
 <Button>SHE</Button>
 <br />
 <br />

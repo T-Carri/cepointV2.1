@@ -1,8 +1,10 @@
 import React, {useEffect, useState, useMemo} from 'react'
 import { listTrabajadors } from '../../graphql/queries'
 import {Amplify, API, graphqlOperation, Storage} from 'aws-amplify'
-import {Expander, ExpanderItem, Badge,Table, TableHead, TableRow, TableCell, TableBody,  Autocomplete, TextField, ThemeProvider, useTheme, Heading, SelectField, Icon} from '@aws-amplify/ui-react';
-import { Button, Card, Offcanvas } from 'react-bootstrap'
+import {TextAreaField, Expander, ExpanderItem, Badge,Table, TableHead, TableRow, TableCell, TableBody,  Autocomplete, TextField, ThemeProvider, useTheme, Heading, SelectField, Icon} from '@aws-amplify/ui-react';
+import { Button, Card, Offcanvas, Row, Col } from 'react-bootstrap'
+import './AllUsers.css'
+
 const SaveIcon = () => (
   <Icon
     ariaLabel=""
@@ -52,20 +54,20 @@ const initialState = {
   const [UserSelect, setUserSelect]=useState()
 
   const StageData = {   
-    nombre:UserSelect?UserSelect.nombre:null, 
-    fechaNac:UserSelect?UserSelect.fechaNac:null,
+    nombre:UserSelect?UserSelect.nombre:null, //OK
+    fechaNac:UserSelect?UserSelect.fechaNac:null, 
     edad:UserSelect?UserSelect.edad:null, 
     area:UserSelect?UserSelect.area:null,  
-    UID:UserSelect?UserSelect.UID:null,
+    UID:UserSelect?UserSelect.UID:null, //OK
     email:UserSelect?UserSelect.email:null,  
-    empresa:UserSelect?UserSelect.empresa:null, 
-    trabajadorVerificado: UserSelect?UserSelect.trabajadorVerificado:null,
-    equipoPrestado: UserSelect?UserSelect.equipoPrestado:null, 
-    ocupado: UserSelect?UserSelect.ocupado:null,
+    empresa:UserSelect?UserSelect.empresa:null,  //OK
+    trabajadorVerificado: UserSelect?UserSelect.trabajadorVerificado:null, 
+    equipoPrestado: UserSelect?UserSelect.equipoPrestado:null,  
+    ocupado: UserSelect?UserSelect.ocupado:null, 
     subcontrato: UserSelect?UserSelect.subcontrato:null,   
-    perfil: UserSelect?UserSelect.perfil:null,  
-    direccion:UserSelect?UserSelect.direccion:null,
-    nss:UserSelect?UserSelect.nss:null,
+    perfil: UserSelect?UserSelect.perfil:null,  //OK
+    direccion:UserSelect?UserSelect.direccion:null, //OK
+    nss:UserSelect?UserSelect.nss:null, //OK
     alergias: UserSelect?UserSelect.alergias:null,
     tipoSangre:UserSelect?UserSelect.tipoSangre:null,
     padeceEnfermedad: UserSelect?UserSelect.padeceEnfermedad:null,
@@ -76,7 +78,7 @@ const initialState = {
     async function onChange(e) {
       const file = e.target.files[0];
       try {
-        await Storage.put(file.name, file, {
+        await Storage.put(`${StageData.nombre}`, file, {
           contentType: "image/png", // contentType is optional
         });
       } catch (error) {
@@ -85,6 +87,14 @@ const initialState = {
     }
 
 
+    async function fetchPhoto(who){
+    try {
+      
+    } catch (error) {
+      
+    }
+
+    }
 const [show, setShow] = useState(false);
 
 const handleClose = () => setShow(false);
@@ -144,39 +154,50 @@ async function fetchTodos() {
           <Offcanvas.Title>Actualiza datos</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
+        <Row>
+          <Col>//nombre 
         <TextField
-      descriptiveText="Escriba nombre completo "
-      placeholder="Nombre"
-      label="Nombre del trabajador"
-      errorMessage="There is an error"
-      //onChange={event=> createUsuario('nombre', event.target.value)}
-    />
-
-<label>Empresa</label>
-      <br />
-      <br />
+        placeholder={StageData.nombre}
+        label="Actualice Nombre"
+        errorMessage="There is an error"
+        //onChange={event=> createUsuario('nombre', event.target.value)}
+        /></Col>
+         <Col>
+         
+//empresa
+      <label>Empresa</label>
       <Autocomplete
       label="Empresa"
       //options={optionsEmpresas}
       //value={value}
       //onClear={onClear}
       //onSelect={onSelect}
-    />
+      /></Col>
+         </Row>
+         <Row>
+          <Col>//nss     
     <TextField
       descriptiveText="Numero de seguridad social"
       placeholder="Numero de seguridad social"
       label="NSS"
       //onChange={event=> createUsuario('nss', event.target.value)}
       errorMessage="There is an error"
-    />
+    /></Col>
+         <Col>
+
+         //perfil    
      <Autocomplete
       label="Perfil"
       //options={options}
       //value={value1}
-     
       //onClear={onClear1}
       //onSelect={onSelect1}
-    />
+      />
+         </Col>
+         </Row>
+         <Row>
+          <Col>
+          //UID     
     <TextField
       descriptiveText="(Opcional, usuarios firebase)"
       placeholder="UID"
@@ -184,18 +205,25 @@ async function fetchTodos() {
       //onChange={event=> createUsuario('UID', event.target.value)}
       errorMessage="There is an error"
     /> 
-    <TextField
-      descriptiveText="Direccion del trabajador"
-      placeholder="Direccion del trabajador"
-      label="Direccion"
-      //onChange={event=> createUsuario('direccion', event.target.value)}
-      errorMessage="There is an error"
-    />
+          </Col>
+         <Col>
+         //DIRECCION    
+         <TextAreaField label="Direccion" defaultValue={StageData.direccion} 
+          //onChange={event=> createUsuario('direccion', event.target.value)}
+          />
+  </Col>
+         </Row>
+
+
+
+
+
+   
     <br />
     <br />
-    <input type="file" onChange={onChange} />;
-<Button variant='dark'  >Subir foto {' '}<SaveIcon/></Button>
-        </Offcanvas.Body>
+    <input id="imageInput" type="file" hidden onChange={onChange} />;
+<Button variant='dark' as='label' htmlFor="imageInput"   >Subir foto {' '}<SaveIcon/></Button>
+        </Offcanvas.Body>                                 
       </Offcanvas>
       </TableRow>} value={e.nombre }>
 

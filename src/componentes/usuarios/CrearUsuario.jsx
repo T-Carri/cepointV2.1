@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Amplify, API, graphqlOperation} from 'aws-amplify'
+import {Amplify, API, graphqlOperation,  Storage} from 'aws-amplify'
 import {  Autocomplete, TextField, ThemeProvider, useTheme, Heading, SelectField, Icon} from '@aws-amplify/ui-react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import './CrearUsuario.css'
@@ -68,6 +68,17 @@ async function addUser() {
   }  
 }
 
+
+    async function onChange(e) {
+      const file = e.target.files[0];
+      try {
+        await Storage.put(file.name, file, {
+          contentType: "image/png", // contentType is optional
+        });
+      } catch (error) {
+        console.log("Error uploading file: ", error);
+      }
+    }
 
 
 
@@ -139,8 +150,9 @@ useEffect(()=>{
         <Col>   <Heading level={5}>
               Crea un usuario 
             </Heading> </Col>
-        <Col><Button variant='dark'>Subir foto {' '}<SaveIcon/></Button></Col>
-
+        <Col> <input id="imageInput" type="file" hidden onChange={onChange} />;
+<Button variant='dark' as='label' htmlFor="imageInput"   >Subir foto {' '}<SaveIcon/></Button></Col>
+   
       </Row>
   
       
